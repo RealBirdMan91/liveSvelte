@@ -21,6 +21,7 @@ defmodule MyLiveViewWeb.Router do
     get "/simple", PageController, :svelte_1
 
     live "/counter", LiveCounter
+    live "/news", LiveNews
   end
 
   # Other scopes may use custom stacks.

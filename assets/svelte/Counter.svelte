@@ -1,11 +1,16 @@
 <script lang="ts">
+    import type { Live } from "./types/live";
+    type Props = {
+        number: number;
+        live: Live;
+    };
+
     // The number prop is reactive,
     // this means if the server assigns the number, it will update in the frontend
-    export let number: number;
+    let { number, live }: Props = $props();
     // live contains all exported LiveView methods available to the frontend
-    export let live;
 
-    let clientNumber = 0;
+    let clientNumber = $state(0);
 
     function increase() {
         // This pushes the event over the websocket
@@ -36,14 +41,14 @@
     <div class="bg-neutral-100 p-4">
         <h1 class="text-2xl font-bold">Counter Server Handled</h1>
         <p>The number is {number}</p>
-        <button on:click={increase}>+</button>
-        <button on:click={decrease}>-</button>
+        <button onclick={increase}>+</button>
+        <button onclick={decrease}>-</button>
     </div>
 
     <div class="bg-neutral-100 p-4">
         <h1 class="text-2xl font-bold">Counter Client Handled</h1>
         <p>The number is {clientNumber}</p>
-        <button on:click={increaseClient}>+</button>
-        <button on:click={decreaseClient}>-</button>
+        <button onclick={increaseClient}>+</button>
+        <button onclick={decreaseClient}>-</button>
     </div>
 </section>
